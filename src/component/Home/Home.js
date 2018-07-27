@@ -40,12 +40,12 @@ export class Home extends React.Component {
     var total = 0;
     this.state.activities.map(activity => {
       total += activity.amount;
+      return total;
     });
-    return total;
   }
 
   addActivity(activity, amount, day, month) {
-    var activity = {
+    var newActivity = {
       type: activity,
       amount: amount,
       day: day,
@@ -53,10 +53,10 @@ export class Home extends React.Component {
       year: new Date().getFullYear()
     };
     axios
-      .post(this.BASE_URL + "activity", activity)
+      .post(this.BASE_URL + "activity", newActivity)
       .then(response => {
         // console.log(response);
-        if (response.status == 201) {
+        if (response.status === 201) {
           this.getAllActivities();
         }
       })
