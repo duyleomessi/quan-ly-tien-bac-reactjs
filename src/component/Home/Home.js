@@ -33,7 +33,7 @@ export class Home extends React.Component {
       month: new Date().getMonth()
     };
     this.allMonth = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    this.BASE_URL = "http://quan-ly-tien-bac-nodejs.herokuapp.com/";
+    this.BASE_URL = "https://quan-ly-tien-bac-nodejs.herokuapp.com/";
   }
 
   countTotal() {
