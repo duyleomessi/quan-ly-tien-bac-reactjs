@@ -8,14 +8,14 @@ export const Header = props => {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#home">React-Bootstrap</a>
+            React-Bootstrap
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1}>
+          <NavItem eventKey={1} >
             <NavLink to="/home"> Home </NavLink>
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={2} >
             <NavLink to="/user">User</NavLink>
           </NavItem>
           <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">

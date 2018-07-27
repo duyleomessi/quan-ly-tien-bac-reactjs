@@ -14,10 +14,10 @@ import {
 import PropTypes from "prop-types";
 import axios from "axios";
 
+
 export class Home extends React.Component {
   constructor(props) {
     super(props);
-    console.log("Constructor");
     this.handleChangeActivity = this.handleChangeActivity.bind(this);
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
     this.handleChangeDay = this.handleChangeDay.bind(this);
@@ -38,10 +38,10 @@ export class Home extends React.Component {
 
   countTotal() {
     var total = 0;
-    this.state.activities.map(activity => {
+    this.state.activities.forEach(activity => {
       total += activity.amount;
-      return total;
     });
+    return total;
   }
 
   addActivity(activity, amount, day, month) {
@@ -81,7 +81,6 @@ export class Home extends React.Component {
   }
 
   componentWillMount() {
-    console.log("Component will mount");
     this.getAllActivities();
   }
 
@@ -229,8 +228,8 @@ export class Home extends React.Component {
                       componentClass="select"
                       onChange={this.handleChangeMonth}
                     >
-                      {this.allMonth.map(month => {
-                        return <option value={month}>{month}</option>;
+                      {this.allMonth.map((month, index) => {
+                        return <option value={month} key={index}>{month}</option>;
                       })}
                     </FormControl>
                   </Col>
