@@ -24,8 +24,6 @@ export class Home extends React.Component {
     super(props);
     this.handleChangeActivity = this.handleChangeActivity.bind(this);
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
-    // this.handleChangeDay = this.handleChangeDay.bind(this);
-    // this.handleChangeMonth = this.handleChangeMonth.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleHide = this.handleHide.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -34,8 +32,9 @@ export class Home extends React.Component {
       total: 0,
       activity: "",
       amount: 0,
-      // day: new Date().getDate(),
-      // month: new Date().getMonth()
+      day: new Date().getDate(),
+      month: new Date().getMonth() + 1,
+      year: new Date().getFullYear(),
       startDate: moment()
     };
     this.allMonth = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -50,18 +49,17 @@ export class Home extends React.Component {
     return total;
   }
 
-  addActivity(activity, amount, day, month) {
+  addActivity(activity, amount, day, month, year) {
     var newActivity = {
       type: activity,
       amount: amount,
       day: day,
       month: month,
-      year: new Date().getFullYear()
+      year: year
     };
     axios
       .post(this.BASE_URL + "activity", newActivity)
       .then(response => {
-        // console.log(response);
         if (response.status === 201) {
           this.getAllActivities();
         }
@@ -102,23 +100,13 @@ export class Home extends React.Component {
     });
   }
 
-  // handleChangeDay(e) {
-  //   this.setState({
-  //     day: e.target.value
-  //   });
-  // }
-
-  // handleChangeMonth(e) {
-  //   this.setState({
-  //     month: e.target.value
-  //   });
-  // }
-
   handleChangeDate(date) {
     this.setState({
-      startDate: date
-    })
-    console.log("startDate " + this.state.startDate);
+      startDate: date,
+      day : moment(date).toDate().getDate(),
+      month: moment(date).toDate().getMonth() + 1,
+      year: moment(date).toDate().getFullYear()
+    });
   }
 
   handleSubmit() {
@@ -126,7 +114,8 @@ export class Home extends React.Component {
       this.state.activity,
       this.state.amount,
       this.state.day,
-      this.state.month
+      this.state.month,
+      this.state.year
     );
     this.handleHide();
   }
@@ -217,43 +206,12 @@ export class Home extends React.Component {
                     />
                   </Col>
                 </FormGroup>
-                {/* <FormGroup controlId="dayForm">
-                  <Col sm={3}>
-                    <ControlLabel>Ngày</ControlLabel>
-                  </Col>
-                  <Col sm={7}>
-                    <FormControl
-                      type="text"
-                      value={this.state.day}
-                      placeholder="Ngày"
-                      onChange={this.handleChangeDay}
-                    />
-                  </Col>
-                </FormGroup>
-                <FormGroup controlId="monthForm">
-                  <Col sm={3}>
-                    <ControlLabel>Tháng</ControlLabel>
-                  </Col>
-                  <Col sm={7}>
-                    <FormControl
-                      componentClass="select"
-                      onChange={this.handleChangeMonth}
-                    >
-                      {this.allMonth.map((month, index) => {
-                        return <option value={month} key={index}>{month}</option>;
-                      })}
-                    </FormControl>
-                  </Col>
-                </FormGroup> */}
+                
                 <FormGroup controlId="datePicker">
                   <Col sm={3}>
                     <ControlLabel>Thời gian</ControlLabel>
                   </Col>
                   <Col sm={7}>
-                    {/* <FormControl
-                      componentClass="select"
-                      onChange={this.handleChangeMonth}
-                    > */}
                       <DatePicker
                         selected={this.state.startDate}
                         onChange={this.handleChangeDate}
