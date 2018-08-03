@@ -14,23 +14,29 @@ import {
 import PropTypes from "prop-types";
 import axios from "axios";
 
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 export class Home extends React.Component {
   constructor(props) {
     super(props);
     this.handleChangeActivity = this.handleChangeActivity.bind(this);
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
-    this.handleChangeDay = this.handleChangeDay.bind(this);
-    this.handleChangeMonth = this.handleChangeMonth.bind(this);
+    // this.handleChangeDay = this.handleChangeDay.bind(this);
+    // this.handleChangeMonth = this.handleChangeMonth.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleHide = this.handleHide.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
     this.state = {
       activities: [],
       total: 0,
       activity: "",
       amount: 0,
-      day: new Date().getDate(),
-      month: new Date().getMonth()
+      // day: new Date().getDate(),
+      // month: new Date().getMonth()
+      startDate: moment()
     };
     this.allMonth = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.BASE_URL = "https://quan-ly-tien-bac-nodejs.herokuapp.com/";
@@ -96,16 +102,23 @@ export class Home extends React.Component {
     });
   }
 
-  handleChangeDay(e) {
-    this.setState({
-      day: e.target.value
-    });
-  }
+  // handleChangeDay(e) {
+  //   this.setState({
+  //     day: e.target.value
+  //   });
+  // }
 
-  handleChangeMonth(e) {
+  // handleChangeMonth(e) {
+  //   this.setState({
+  //     month: e.target.value
+  //   });
+  // }
+
+  handleChangeDate(date) {
     this.setState({
-      month: e.target.value
-    });
+      startDate: date
+    })
+    console.log("startDate " + this.state.startDate);
   }
 
   handleSubmit() {
@@ -204,7 +217,7 @@ export class Home extends React.Component {
                     />
                   </Col>
                 </FormGroup>
-                <FormGroup controlId="dayForm">
+                {/* <FormGroup controlId="dayForm">
                   <Col sm={3}>
                     <ControlLabel>Ngày</ControlLabel>
                   </Col>
@@ -222,8 +235,6 @@ export class Home extends React.Component {
                     <ControlLabel>Tháng</ControlLabel>
                   </Col>
                   <Col sm={7}>
-                    {/* <FormControl type="text" value={this.state.month}
-                      placeholder="Tháng" onChange={this.handleChangeMonth} /> */}
                     <FormControl
                       componentClass="select"
                       onChange={this.handleChangeMonth}
@@ -232,6 +243,22 @@ export class Home extends React.Component {
                         return <option value={month} key={index}>{month}</option>;
                       })}
                     </FormControl>
+                  </Col>
+                </FormGroup> */}
+                <FormGroup controlId="datePicker">
+                  <Col sm={3}>
+                    <ControlLabel>Thời gian</ControlLabel>
+                  </Col>
+                  <Col sm={7}>
+                    {/* <FormControl
+                      componentClass="select"
+                      onChange={this.handleChangeMonth}
+                    > */}
+                      <DatePicker
+                        selected={this.state.startDate}
+                        onChange={this.handleChangeDate}
+                      />
+                    {/* </FormControl> */}
                   </Col>
                 </FormGroup>
               </Form>
