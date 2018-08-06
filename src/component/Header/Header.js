@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-export const Header = props => {
+const Header = props => {
   return (
     <div>
       <Navbar>
@@ -30,3 +30,5 @@ export const Header = props => {
     </div>
   );
 };
+
+export default Header;

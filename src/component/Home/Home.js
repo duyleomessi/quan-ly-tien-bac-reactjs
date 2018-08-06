@@ -19,7 +19,7 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-export class Home extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.handleChangeActivity = this.handleChangeActivity.bind(this);
@@ -241,3 +241,5 @@ Home.propTypes = {
   user: PropTypes.object,
   greeting: PropTypes.func
 };
+
+export default Home;

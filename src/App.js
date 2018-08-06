@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 
-import { Header } from "./component/Header/Header";
+import Header from "./component/Header/Header";
 import Main from "./component/Router/Main";
 
 class App extends Component {

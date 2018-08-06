@@ -1,7 +1,7 @@
 import React from "react";
 import { Row } from "react-bootstrap";
 
-export class User extends React.Component {
+class User extends React.Component {
   render() {
     return (
       <Row>
@@ -11,3 +11,5 @@ export class User extends React.Component {
     );
   }
 }
+
+export default User;

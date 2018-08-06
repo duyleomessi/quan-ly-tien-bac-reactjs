@@ -42,6 +42,7 @@ class Login extends React.Component {
                     console.log("Login successfully");
                     var token = response.data.token;
                     localStorage.setItem('token', token);
+                    this.props.history.push('/home');
                 }
             })
             .catch(err => {
