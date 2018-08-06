@@ -39,7 +39,9 @@ class Login extends React.Component {
         axios.post(this.BASE_URL + 'users/login', user)
             .then(response => {
                 if (response.status === 200) {
+                    console.log("Login successfully");
                     var token = response.data.token;
+                    localStorage.setItem('token', token);
                 }
             })
             .catch(err => {

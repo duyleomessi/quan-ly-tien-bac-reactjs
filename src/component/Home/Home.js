@@ -58,7 +58,9 @@ export class Home extends React.Component {
       year: year
     };
     axios
-      .post(this.BASE_URL + "activity", newActivity)
+      .post(this.BASE_URL + "users/activity", newActivity, {
+        headers: {"x-access-token": localStorage.getItem('token')}
+      })
       .then(response => {
         if (response.status === 201) {
           this.getAllActivities();
@@ -70,7 +72,9 @@ export class Home extends React.Component {
   }
 
   getAllActivities() {
-    fetch(this.BASE_URL + "activity")
+    fetch(this.BASE_URL + "users/activities", {
+      headers: {"x-access-token": localStorage.getItem('token')}
+    })
       .then(result => {
         return result.json();
       })
