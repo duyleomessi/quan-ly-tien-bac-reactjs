@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Col,
-  Row,
-  Table,
   FormGroup,
   FormControl,
   Form,
@@ -18,6 +16,10 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
+
+import { connect } from 'react-redux';
+
+import ListActivities  from './ListActivities';
 
 class Home extends React.Component {
   constructor(props) {
@@ -38,16 +40,16 @@ class Home extends React.Component {
       startDate: moment()
     };
     this.allMonth = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    this.BASE_URL = "https://quan-ly-tien-bac-nodejs.herokuapp.com/";
+    this.BASE_URL = process.env.REACT_APP_SERVER_URL;
   }
 
-  countTotal() {
-    var total = 0;
-    this.state.activities.forEach(activity => {
-      total += activity.amount;
-    });
-    return total;
-  }
+  // countTotal() {
+  //   var total = 0;
+  //   this.state.activities.forEach(activity => {
+  //     total += activity.amount;
+  //   });
+  //   return total;
+  // }
 
   addActivity(activity, amount, day, month, year) {
     var newActivity = {
@@ -82,15 +84,13 @@ class Home extends React.Component {
         this.setState({
           activities: data
         });
-        this.setState({
-          total: this.countTotal()
-        });
+        // this.setState({
+        //   total: this.countTotal()
+        // });
       });
   }
 
-  componentWillMount() {
-    this.getAllActivities();
-  }
+  
 
   handleChangeActivity(e) {
     this.setState({
@@ -133,35 +133,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="col-sm-10 col-sm-offset-1" style={{ margin: 50 }}>
-        <Row>
-          <Col>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Hoạt động</th>
-                  <th>Đơn giá</th>
-                  <th>Thời gian</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {this.state.activities.map((activity, i) => {
-                  return (
-                    <tr key={i}>
-                      <td>{activity.type}</td>
-                      <td>{activity.amount}</td>
-                      <td>{activity.day}</td>
-                    </tr>
-                  );
-                })}
-                <tr>
-                  <td>total</td>
-                  <td>{this.state.total}</td>
-                </tr>
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
+        <ListActivities />
 
         {/* modal */}
         <Button
