@@ -29,6 +29,12 @@ export const addActivitySuccess = (activity) => ({
   payload: activity 
 })
 
+export const addActivityFailure = () => ({
+  type: ADD_ACTIVITY_FAILURE
+})
+
+
+
 export function fetchActivities() {
   return dispatch => {
     dispatch(fetchActivitiesBegin());
@@ -49,6 +55,12 @@ export function fetchActivities() {
   };
 }
 
+export function openModalAddActivity() {
+  return dispatch => {
+    dispatch(addActivityBegin())
+  }
+}
+
 export function addActivity(activity) {
   return dispatch => {
     return fetch(process.env.REACT_APP_SERVER_URL + "users/activity", {
@@ -59,7 +71,7 @@ export function addActivity(activity) {
     .then(handleError)
     .then(response => response.json())
     .then(json => {
-      console.log(json)
+      // console.log(json)
       dispatch(addActivitySuccess(activity))
     })
     .catch(err => {

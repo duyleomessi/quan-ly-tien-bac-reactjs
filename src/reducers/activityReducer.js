@@ -11,7 +11,7 @@ const initialState = {
     activities: [],
     loading: false,
     error: null,
-    isAdd: true
+    isAdd: false
 }
 
 export default function(state=initialState, action) {

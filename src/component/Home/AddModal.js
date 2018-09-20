@@ -13,7 +13,7 @@ import {
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
-import { addActivity } from "../../actions/activityActions";
+import { addActivity, addActivityBegin } from "../../actions/activityActions";
 
 const mapStateToProps = state => {
   return {
@@ -26,6 +26,9 @@ const mapDispatchToProps = dispatch => {
   return {
     addActivity: activity => {
       dispatch(addActivity(activity))
+    },
+    addActivityBegin: () => {
+      dispatch(addActivityBegin())
     }
   };
 };
@@ -42,6 +45,7 @@ class ConnectedModal extends React.Component {
       year: new Date().getFullYear(),
       startDate: moment()
     };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleHide = this.handleHide.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -58,9 +62,10 @@ class ConnectedModal extends React.Component {
       year: this.state.year
     };
     this.props.addActivity(activity);
-    this.setState({
-      isShowModal: false
-    })
+  }
+
+  handleOpenModal(e) {
+    this.props.addActivityBegin();
   }
 
   handleHide(e) {
@@ -101,18 +106,14 @@ class ConnectedModal extends React.Component {
             className="col-sm-4 col-sm-offset-3"
             bsStyle="primary"
             bsSize="large"
-            onClick={() => {
-              this.setState({
-                isShowModal: true
-              });
-            }}
+            onClick={this.handleOpenModal}
           >
             Add activity
           </Button>
         )}
 
         <Modal
-          show={this.state.isShowModal}
+          show={isAdd}
           onHide={this.handleHide}
           // container={this}
           // aria-labelledby="contained-modal-title"
