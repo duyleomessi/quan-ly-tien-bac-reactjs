@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 import { fetchActivities } from '../../actions/activityActions';
 
 const mapStateToProps = state => {
-  return { activities: state.activityReducer.activities };
+  return {
+    activities: state.activityReducer.activities,
+    loading: state.activityReducer.loading
+  };
 };
 
 class ListActivitiesConnected extends React.Component {
@@ -16,10 +19,15 @@ class ListActivitiesConnected extends React.Component {
 
   render() {
     const activities = this.props.activities;
+    var loading = this.props.loading;
     return (
       <Row>
         <Col>
-          <Table>
+          { loading 
+          ? <Col sm={7} smOffset={5} style={{paddingTop: "20%"}}>
+            <i className="fa fa-spinner fa-spin fa-4x"  ></i>
+          </Col>  
+          : <Table>
             <thead>
               <tr>
                 <th>Hoạt động</th>
@@ -29,7 +37,7 @@ class ListActivitiesConnected extends React.Component {
             </thead>
 
             <tbody>
-              {activities.map((activity, i) => {
+              { activities.map((activity, i) => {
                 return (
                   <tr key={i}>
                     <td>{activity.type}</td>
@@ -38,14 +46,12 @@ class ListActivitiesConnected extends React.Component {
                   </tr>
                 );
               })}
-              {/* <tr>
-            <td>total</td>
-            <td>{this.state.total}</td>
-          </tr> */}
             </tbody>
           </Table>
+          }
         </Col>
       </Row>
+      
     );
   }
 }
