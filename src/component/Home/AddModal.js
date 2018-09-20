@@ -58,6 +58,9 @@ class ConnectedModal extends React.Component {
       year: this.state.year
     };
     this.props.addActivity(activity);
+    this.setState({
+      isShowModal: false
+    })
   }
 
   handleHide(e) {
@@ -109,7 +112,7 @@ class ConnectedModal extends React.Component {
         )}
 
         <Modal
-          show={this.state.isShowModal && isAdd}
+          show={this.state.isShowModal}
           onHide={this.handleHide}
           // container={this}
           // aria-labelledby="contained-modal-title"
