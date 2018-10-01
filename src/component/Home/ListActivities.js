@@ -41,7 +41,7 @@ class ListActivitiesConnected extends React.Component {
                   <tr key={i}>
                     <td>{activity.type}</td>
                     <td>{activity.amount}</td>
-                    <td>{activity.day}</td>
+                    { activity.day < 10 ? <td>0{activity.day}-{activity.month}-{activity.year}</td> : <td>{activity.day}-{activity.month}-{activity.year}</td> }
                   </tr>
                 );
               })}
