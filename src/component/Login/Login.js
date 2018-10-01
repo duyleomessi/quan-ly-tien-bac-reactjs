@@ -9,8 +9,6 @@ import {
   ControlLabel
 } from "react-bootstrap";
 
-// import axios from "axios";
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -39,25 +37,7 @@ class Login extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // var user = {
-    //   email: this.state.email,
-    //   password: this.state.password
-    // };
-    // console.log(user)
 
-    // axios.post(this.BASE_URL + 'users/login', user)
-    //     .then(response => {
-    //         if (response.status === 200) {
-    //             var token = response.data.token;
-    //             localStorage.setItem('token', token);
-    //             this.props.history.push('/home');
-    //         }
-    //     })
-    //     .catch(err => {
-    //         console.log("Email or password is incorrect");
-    //     })
-
-    console.log(process.env.REACT_APP_SERVER_URL + "users/login");
     fetch(process.env.REACT_APP_SERVER_URL + "users/login", {
       method: "POST",
       body: JSON.stringify({

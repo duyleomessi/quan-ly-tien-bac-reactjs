@@ -14,7 +14,6 @@ const mapStateToProps = state => {
 class ListActivitiesConnected extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchActivities());
-    // this.props.dispatch(fetchActivitiesSuccess([{"type": "Ăn sáng", "amount": 30000, "day": 20}, {"type": "Ăn trưa", "amount": 30000, "day": 30}]))
   }
 
   render() {

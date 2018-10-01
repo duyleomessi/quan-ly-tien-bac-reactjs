@@ -14,7 +14,6 @@ const Main = () => (
     <main>
         <Switch>
             <Redirect exact from="/" to="/login" />
-            {/* <Route path='/home' render={props => <Home {...props}/>} /> */}
             <AuthRoute path='/home' component={Home} />
             <Route path='/user' render={props => <User {...props}/>}/>
             <Route path='/login' render={props => <Login {...props}/>}/>
