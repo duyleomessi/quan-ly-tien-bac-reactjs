@@ -90,7 +90,7 @@ class Login extends React.Component {
             <FormControl
               type="email"
               value={this.state.email}
-              placeholder="Email"
+              placeholder="Enter your email"
               onChange={this.getEmailValue}
             />
           </Col>
@@ -104,7 +104,7 @@ class Login extends React.Component {
             <FormControl
               type="password"
               value={this.state.password}
-              placeholder="Password"
+              placeholder="Enter your password"
               onChange={this.getPasswordValue}
             />
           </Col>
