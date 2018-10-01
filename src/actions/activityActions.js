@@ -36,9 +36,10 @@ export const addActivityFailure = () => ({
 
 
 export function fetchActivities() {
+  const currentMonth = new Date().getMonth() + 1;
   return dispatch => {
     dispatch(fetchActivitiesBegin());
-    return fetch(process.env.REACT_APP_SERVER_URL + "users/activities", {
+    return fetch(process.env.REACT_APP_SERVER_URL + "users/activities/month/" + currentMonth, {
       headers: { "x-access-token": localStorage.getItem("token") }
     })
       .then(handleError)
